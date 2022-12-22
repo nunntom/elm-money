@@ -1,5 +1,6 @@
 module Money exposing
-    ( Money
+    ( Formatter
+    , Money
     , add
     , convertAndSum
     , convertList
@@ -11,6 +12,7 @@ module Money exposing
     , fromFloatMinor
     , fromInt
     , getCurrency
+    , isNoMoney
     , multiply
     , negate
     , subtract
@@ -252,3 +254,12 @@ convertAndSum =
 
 type alias ExchangeRates =
     Dict String Float
+
+
+
+-- CHECKS
+
+
+isNoMoney : Money -> Bool
+isNoMoney =
+    Custom.isNoMoney

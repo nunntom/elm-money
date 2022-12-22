@@ -13,6 +13,7 @@ module Money.Custom exposing
     , fromFloatMinor
     , fromInt
     , getCurrency
+    , isNoMoney
     , multiply
     , negate
     , subtract
@@ -336,6 +337,15 @@ convertAndSum :
 convertAndSum toDecimalDigits toCode rates toCurr rest =
     Result.andThen (sum toCurr)
         (convertList toDecimalDigits toCode rates toCurr rest)
+
+
+
+-- CHECKS
+
+
+isNoMoney : Money currency -> Bool
+isNoMoney (Money _ amount) =
+    amount == zero
 
 
 
