@@ -11,6 +11,8 @@ module Money exposing
     , fromFloatMajor
     , fromFloatMinor
     , fromInt
+    , fromStringMajor
+    , fromStringMinor
     , getCurrency
     , isNoMoney
     , multiply
@@ -85,6 +87,16 @@ fromFloatMinor =
 fromFloatMajor : Currency -> Float -> Money
 fromFloatMajor =
     Custom.fromFloatMajor Currency.toDecimalDigits
+
+
+fromStringMinor : Currency -> String -> Maybe Money
+fromStringMinor =
+    Custom.fromStringMinor
+
+
+fromStringMajor : Currency -> String -> Maybe Money
+fromStringMajor =
+    Custom.fromStringMajor Currency.toDecimalDigits
 
 
 toBigRational : Money -> BigRational

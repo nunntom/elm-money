@@ -12,6 +12,8 @@ module Money.Custom exposing
     , fromFloatMajor
     , fromFloatMinor
     , fromInt
+    , fromStringMajor
+    , fromStringMinor
     , getCurrency
     , isNoMoney
     , multiply
@@ -87,6 +89,18 @@ fromFloatMajor toDecimalDigits curr amount =
     BR.fromFloat amount
         |> BR.mul (BR.fromInt <| 10 ^ toDecimalDigits curr)
         |> Money curr
+
+
+fromStringMinor : currency -> String -> Maybe (Money currency)
+fromStringMinor curr s =
+    BR.fromFloatString s
+        |> Maybe.map (Money curr)
+
+
+fromStringMajor : (currency -> Int) -> currency -> String -> Maybe (Money currency)
+fromStringMajor toDecimalDigits curr s =
+    BR.fromFloatString s
+        |> Maybe.map (BR.mul (BR.fromInt <| 10 ^ toDecimalDigits curr) >> Money curr)
 
 
 toBigRational : Money currency -> BigRational
