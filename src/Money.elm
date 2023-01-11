@@ -21,6 +21,7 @@ module Money exposing
     , sum
     , toBigInt
     , toBigRational
+    , toDecimalString
     )
 
 import BigInt exposing (BigInt)
@@ -107,6 +108,11 @@ toBigRational =
 toBigInt : Money -> BigInt
 toBigInt =
     Custom.toBigInt
+
+
+toDecimalString : Money -> String
+toDecimalString =
+    Custom.toDecimalString Currency.toDecimalDigits
 
 
 {-| What Currency is this money?

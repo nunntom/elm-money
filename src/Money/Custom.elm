@@ -22,6 +22,7 @@ module Money.Custom exposing
     , sum
     , toBigInt
     , toBigRational
+    , toDecimalString
     )
 
 import BigInt exposing (BigInt)
@@ -111,6 +112,11 @@ toBigRational (Money _ amount) =
 toBigInt : Money currency -> BigInt
 toBigInt (Money _ amount) =
     BR.round BR.ToEven amount
+
+
+toDecimalString : (currency -> Int) -> Money currency -> String
+toDecimalString toDecimalDigits (Money curr amount) =
+    BR.toDecimalString (toDecimalDigits curr) (BR.div amount (BR.fromInt <| 10 ^ toDecimalDigits curr))
 
 
 {-| What currency is this money?
