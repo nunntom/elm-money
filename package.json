@@ -4,12 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gen-currencies": "npx elm-codegen run --flags-from=node_modules/currencies.json/currencies.json && cp generated/Currency.elm src/Currency.elm",
+    "postinstall": "elm-codegen install"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "currencies.json": "^1.0.2",
     "elm": "^0.19.1-5",
+    "elm-codegen": "^0.2.0",
     "elm-format": "^0.8.5"
   }
 }
